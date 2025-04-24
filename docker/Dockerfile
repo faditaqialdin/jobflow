@@ -8,6 +8,9 @@ WORKDIR /var/www/html
 
 COPY . .
 
+RUN chown -R www-data:www-data /var/www/html \
+    && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache \
+
 COPY ./docker/conf/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 COPY ./docker/sh/wait-for-it.sh /usr/local/bin/wait-for-it.sh
@@ -20,8 +23,5 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader
 
 RUN npm install && npm run build
-
-RUN chown -R www-data:www-data /var/www/html \
-    && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
