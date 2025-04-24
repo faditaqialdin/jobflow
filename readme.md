@@ -8,7 +8,6 @@ Gmail threads, and get personalized AI-powered recommendations to stay organized
 - 📥 Gmail sync for centralized opportunity tracking
 - 📄 Smart parsing and deduplication of job messages
 - 🤖 Gemini integration for intelligent job insights
-- 🔔 Notification support with Mailgun
 - ⚙️ Laravel + Livewire + Tailwind + Vite
 - 🐳 Dockerized environment with MySQL service
 
@@ -42,15 +41,6 @@ GOOGLE_CLIENT_SECRET = your_google_client_secret
 
 ```ini
 GEMINI_API_KEY = your_gemini_api_key
-```
-
-* Mailgun (for email notifications):
-
-```ini
-MAIL_MAILER = mailgun
-MAILGUN_DOMAIN = your-mailgun-domain
-MAILGUN_SECRET = your-mailgun-secret
-MAIL_FROM_ADDRESS = no-reply@yourdomain.com
 ```
 
 ### 3. Build and start containers
