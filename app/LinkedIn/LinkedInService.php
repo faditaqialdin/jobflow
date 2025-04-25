@@ -7,8 +7,10 @@ use App\LinkedIn\Job\Job;
 use App\LinkedIn\Job\JobFetcher;
 use App\LinkedIn\JobList\JobListFetcher;
 use App\LinkedIn\Query\JobListQuery;
+use App\Mail\NewOpportunities;
 use App\Models\User;
 use App\Repositories\OpportunityRepository;
+use Illuminate\Support\Facades\Mail;
 use Throwable;
 
 readonly class LinkedInService
@@ -29,6 +31,7 @@ readonly class LinkedInService
         }
 
         $jobs = $this->jobListFetcher->fetchAll($query);
+        $recommendedJobs = collect();
 
         /** @var Job $job */
         foreach ($jobs as $job) {
@@ -44,11 +47,16 @@ readonly class LinkedInService
                 $isRecommended = $this->geminiJobRecommenderService->isRecommended($job, $query);
 
                 if ($isRecommended) {
+                    $recommendedJobs->add($job);
                     $this->opportunityRepository->createRecommended($user, $job);
                 }
             } catch (Throwable $throwable) {
                 report($throwable);
             }
+        }
+
+        if ($recommendedJobs->isNotEmpty()) {
+            Mail::to($user)->send(new NewOpportunities($recommendedJobs));
         }
     }
 }
