@@ -10,8 +10,6 @@ if ! grep -q "^APP_KEY=" /var/www/html/.env || grep -q "APP_KEY=$" /var/www/html
     php artisan key:generate
 fi
 
-/usr/local/bin/wait-for-it.sh mysql:3306
-
 if [ "$DB_CONNECTION" = "sqlite" ]; then
     echo "Using SQLite. Ensuring database file exists..."
     if [ ! -f database/database.sqlite ]; then

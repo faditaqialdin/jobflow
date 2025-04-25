@@ -57,5 +57,5 @@ This will:
 
 ### 4. Access your app:
 
-* Frontend: http://localhost
+* Frontend: http://localhost:8080
 * MySQL: Connect via localhost:3306 (use root/root if needed)
