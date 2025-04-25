@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Jobs\GmailSyncJob;
 use App\LinkedIn\LinkedInService;
-use App\LinkedIn\Query\JobListQueryBuilder;
 use App\Models\User;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Http\RedirectResponse;
@@ -50,19 +49,6 @@ class GoogleAuthController extends Controller
 
     public function logout(): RedirectResponse
     {
-        $this->linkedInService->recommend(
-            user(),
-            JobListQueryBuilder::new()
-                ->setKeywords(user()->recommend_job_keywords)
-                ->setAvoids(user()->recommend_job_avoids)
-                ->setLocations(user()->recommend_job_locations)
-                ->setDateSincePosted('24hr')
-                ->setSortBy('relevant')
-                ->build()
-        );
-
-        dd('finished');
-
         user()?->googleToken()->delete();
         return redirect()->route('sync')->with('success', 'Disconnected from Google successfully.');
     }
