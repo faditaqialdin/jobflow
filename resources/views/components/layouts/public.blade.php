@@ -40,6 +40,11 @@
 
 <footer class="py-6 text-center text-sm text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-[#1b1b18]">
     © {{ date('Y') }} JobFlow. All rights reserved.
+    <p>
+        <a class="text-xs inline-link" href="{{ route('privacy-policy') }}">Privacy Policy</a>
+        .
+        <a class="text-xs inline-link" href="{{ route('terms-of-use') }}">Terms of Use</a>
+    </p>
 </footer>
 @include('partials.foot')
 </body>
