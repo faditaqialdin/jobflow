@@ -41,6 +41,6 @@
         </div>
     </div>
 </div>
-@fluxScripts
+@include('partials.foot')
 </body>
 </html>
