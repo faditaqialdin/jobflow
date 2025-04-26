@@ -4,7 +4,10 @@ use App\Http\Controllers\GoogleAuthController;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
-Route::view('/', 'welcome')->name('home');
+Route::view('/', 'public.welcome')->name('home');
+Route::view('/terms-of-use', 'public.terms-of-use')->name('terms-of-use');
+Route::view('/privacy-policy', 'public.privacy-policy')->name('privacy-policy');
+
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
