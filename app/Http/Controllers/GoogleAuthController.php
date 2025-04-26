@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\GmailSyncJob;
-use App\LinkedIn\LinkedInService;
 use App\Models\User;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Http\RedirectResponse;
@@ -12,10 +11,6 @@ use Laravel\Socialite\Facades\Socialite;
 class GoogleAuthController extends Controller
 {
     use DispatchesJobs;
-
-    public function __construct(private LinkedInService $linkedInService)
-    {
-    }
 
     public function redirectToGoogle()
     {
