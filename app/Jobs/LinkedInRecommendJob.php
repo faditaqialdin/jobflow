@@ -5,13 +5,14 @@ namespace App\Jobs;
 use App\LinkedIn\LinkedInService;
 use App\LinkedIn\Query\JobListQueryBuilder;
 use App\Models\User;
+use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-class LinkedInRecommendJob implements ShouldQueue
+class LinkedInRecommendJob implements ShouldQueue, ShouldBeUnique
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 

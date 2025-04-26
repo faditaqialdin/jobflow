@@ -8,13 +8,14 @@ use App\Gmail\GmailServiceFactory;
 use App\Models\User;
 use App\Repositories\OpportunityRepository;
 use Google\Service\Exception;
+use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-class GmailSyncJob implements ShouldQueue
+class GmailSyncJob implements ShouldQueue, ShouldBeUnique
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
