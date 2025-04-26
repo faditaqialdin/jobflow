@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Gmail;
+namespace App\Gmail\Service;
 
 use Google\Service\Gmail\MessagePart;
 use Google_Service_Gmail_Message as GoogleServiceGmailMessage;

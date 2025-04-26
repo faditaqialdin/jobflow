@@ -2,7 +2,7 @@
 
 namespace App\Jobs;
 
-use App\LinkedIn\LinkedInService;
+use App\LinkedIn\LinkedInRecommendService;
 use App\LinkedIn\Query\JobListQueryBuilder;
 use App\Models\User;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
@@ -20,7 +20,7 @@ class LinkedInRecommendJob implements ShouldQueue, ShouldBeUnique
     {
     }
 
-    public function handle(LinkedInService $linkedInService): void
+    public function handle(LinkedInRecommendService $linkedInService): void
     {
         $linkedInService->recommend(
             $this->user,

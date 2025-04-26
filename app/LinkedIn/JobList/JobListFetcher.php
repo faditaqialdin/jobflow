@@ -29,7 +29,7 @@ class JobListFetcher
         $jobs = collect();
         do {
             try {
-                sleep(random_int(2, 3));
+                sleep(random_int(4, 6));
                 $jobs = $this->fetchPage($page++, $query);
                 $consecutiveErrors = 0;
                 $allJobs = $allJobs->concat($jobs->toArray());

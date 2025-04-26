@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use App\Gemini\GeminiJobDetectorService;
 use App\Gemini\GeminiJobRecommenderService;
-use App\Gmail\GmailClientFactory;
+use App\Gmail\Service\GmailClientFactory;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 

@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Gmail;
+namespace App\Gmail\Service;
 
 use Google;
 use Google_Service_Gmail as GoogleServiceGmail;
 use Google_Service_Gmail_Message as GoogleServiceGmailMessage;
+use Random\RandomException;
 
 readonly class GmailFetcher
 {
@@ -14,6 +15,7 @@ readonly class GmailFetcher
 
     /**
      * @throws Google\Service\Exception
+     * @throws RandomException
      */
     public function fetchMessages(string $query): array
     {
@@ -21,6 +23,8 @@ readonly class GmailFetcher
         $pageToken = null;
 
         do {
+            sleep(random_int(4, 6));
+
             $optParams = ['q' => $query, 'maxResults' => 100];
             if ($pageToken) {
                 $optParams['pageToken'] = $pageToken;

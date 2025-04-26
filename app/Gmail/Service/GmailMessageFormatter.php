@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Gmail;
+namespace App\Gmail\Service;
 
 use App\Models\User;
 
