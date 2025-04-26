@@ -8,6 +8,12 @@
 
 @vite(['resources/css/app.css', 'resources/js/app.js'])
 @fluxAppearance
+@cookieconsentscripts
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 @stack('styles')
-
+<style>
+    .cookiesBtn__link {
+        background: #1447e6 !important;
+        border: 1px solid #1447e6 !important;
+    }
+</style>
