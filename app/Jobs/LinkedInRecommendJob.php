@@ -5,14 +5,14 @@ namespace App\Jobs;
 use App\LinkedIn\LinkedInRecommendService;
 use App\LinkedIn\Query\JobListQueryBuilder;
 use App\Models\User;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\Middleware\WithoutOverlapping;
 use Illuminate\Queue\SerializesModels;
 
-class LinkedInRecommendJob implements ShouldQueue, ShouldBeUnique
+class LinkedInRecommendJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -32,6 +32,11 @@ class LinkedInRecommendJob implements ShouldQueue, ShouldBeUnique
                 ->setSortBy('relevant')
                 ->build()
         );
+    }
+
+    public function middleware(): array
+    {
+        return [new WithoutOverlapping()];
     }
 }
 

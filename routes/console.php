@@ -9,4 +9,4 @@ Artisan::command('inspire', function () {
 })->purpose('Display an inspiring quote');
 
 Schedule::command('app:gmail-sync')->everyMinute()->withoutOverlapping();
-Schedule::command('app:linkedin-recommend')->hourly()->withoutOverlapping();
+Schedule::command('app:linkedin-recommend')->everySixHours()->withoutOverlapping();
