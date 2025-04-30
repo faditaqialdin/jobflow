@@ -1,11 +1,13 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
-    "name": "laravel/livewire-starter-kit",
+    "name": "primacores/jobflow",
     "type": "project",
-    "description": "The official Laravel starter kit for Livewire.",
+    "description": "A smart job tracking platform built with Laravel Livewire, features intelligent job recommendations and Gmail sync for complete visibility over your job search journey.",
     "keywords": [
-        "laravel",
-        "framework"
+        "job tracking",
+        "job board",
+        "job recommendations",
+        "job Gmail sync"
     ],
     "license": "MIT",
     "require": {
