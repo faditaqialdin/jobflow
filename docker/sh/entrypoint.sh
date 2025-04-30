@@ -10,7 +10,7 @@ if ! grep -q "^APP_KEY=" /var/www/html/.env || grep -q "APP_KEY=$" /var/www/html
     php artisan key:generate
 fi
 
-if [ "$DB_CONNECTION" = "sqlite" ]; then
+if grep -E -q '^DB_CONNECTION="?sqlite"?$' .env; then
     echo "Using SQLite. Ensuring database file exists..."
     if [ ! -f database/database.sqlite ]; then
         touch database/database.sqlite
