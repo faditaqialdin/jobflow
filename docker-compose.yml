@@ -2,11 +2,39 @@ services:
     app:
         build:
             context: .
+            dockerfile: Dockerfile
         container_name: laravel-app
         volumes:
             - .:/var/www/html
         ports:
             - "8080:8080"
+        command: serve --host=0.0.0.0 --port=8080
+        depends_on:
+            - mysql
+        networks:
+            - laravel
+
+    queue:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        container_name: laravel-queue
+        volumes:
+            - .:/var/www/html
+        command: queue:work --timeout=1800 --tries=3
+        depends_on:
+            - mysql
+        networks:
+            - laravel
+
+    scheduler:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        container_name: laravel-scheduler
+        volumes:
+            - .:/var/www/html
+        command: schedule:work
         depends_on:
             - mysql
         networks:
