@@ -11,6 +11,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 
 class GmailSyncJob implements ShouldQueue, ShouldBeUnique, ShouldBeEncrypted
 {
@@ -22,6 +23,9 @@ class GmailSyncJob implements ShouldQueue, ShouldBeUnique, ShouldBeEncrypted
 
     public function handle(GmailSyncService $gmailSyncService): void
     {
+        Log::info('GmailSyncJob started', [
+            'user_id' => $this->user->id,
+        ]);
         $gmailSyncService->sync($this->user);
     }
 

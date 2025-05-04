@@ -12,6 +12,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 
 class LinkedInRecommendJob implements ShouldQueue, ShouldBeUnique, ShouldBeEncrypted
 {
@@ -23,6 +24,9 @@ class LinkedInRecommendJob implements ShouldQueue, ShouldBeUnique, ShouldBeEncry
 
     public function handle(LinkedInRecommendService $linkedInService): void
     {
+        Log::info('LinkedInRecommendJob started', [
+            'user_id' => $this->user->id,
+        ]);
         $linkedInService->recommend(
             $this->user,
             JobListQueryBuilder::new()
