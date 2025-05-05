@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Jobs\GmailSyncJob;
 use App\Models\User;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Http\RedirectResponse;
@@ -36,8 +35,6 @@ class GoogleAuthController extends Controller
             'refresh_token' => $googleUser->refreshToken,
             'expires_at' => now()->addSeconds($googleUser->expiresIn),
         ]);
-
-        dispatch(new GmailSyncJob($user));
 
         return redirect()->route('sync')->with('success', 'Google connected! Sync started.');
     }
