@@ -71,19 +71,6 @@ return [
             'block_for' => null,
             'after_commit' => false,
         ],
-
-        'pubsub' => [
-            'driver' => 'pubsub',
-            'project_id' => env('GOOGLE_PROJECT_ID', ''),
-            'queue_prefix' => env('PUBSUB_TOPIC_PREFIX', ''),
-            'queue' => env('PUBSUB_TOPIC', 'default'),
-            'subscriber' => env('PUBSUB_SUBSCRIBER', ''),
-            'retries' => 3,
-            'request_timeout' => 60,
-            'create_topics' => true,
-            'create_subscriptions' => true,
-        ],
-
     ],
 
     /*
