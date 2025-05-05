@@ -4,9 +4,6 @@ use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 
-if (($_SERVER['REQUEST_URI'] ?? '') === '/cloud-scheduler-job') {
-    $_ENV['APP_RUNNING_IN_CONSOLE'] = true;
-}
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
         web: __DIR__ . '/../routes/web.php',
