@@ -1,4 +1,4 @@
-<div class="max-w-xl mx-auto space-y-6 p-6 bg-gray-50 text-zinc-800 dark:text-white rounded-lg shadow">
+<div class="max-w-xl mx-auto space-y-6 p-6 bg-gray-50 dark:bg-zinc-900 text-zinc-800 dark:text-white rounded-lg shadow">
     <div class="rounded-xl mb-4">
         <h2 class="text-xl font-semibold mb-2">Tailor Your Job Search Experience</h2>
         <p class="text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed">
