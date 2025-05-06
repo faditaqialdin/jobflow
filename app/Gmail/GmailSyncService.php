@@ -35,7 +35,6 @@ readonly class GmailSyncService
 
             foreach ($messages as $message) {
                 try {
-                    sleep(random_int(4, 6));
                     $text = $this->gmailMessageFormatter->format($user, $message);
                     $result = $this->geminiJobDetectorService->getJob($text);
                     if ($result) {

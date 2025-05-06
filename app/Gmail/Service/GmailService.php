@@ -24,7 +24,6 @@ readonly class GmailService
 
         foreach ($this->fetcher->fetchMessages($query) as $msgRef) {
             try {
-                sleep(random_int(4, 6));
                 $raw = $this->fetcher->fetchMessageById($msgRef->getId());
                 $result[] = $this->parser->parse($raw);
             } catch (Throwable $throwable) {

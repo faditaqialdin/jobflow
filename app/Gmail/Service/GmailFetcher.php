@@ -23,8 +23,6 @@ readonly class GmailFetcher
         $pageToken = null;
 
         do {
-            sleep(random_int(4, 6));
-
             $optParams = ['q' => $query, 'maxResults' => 100];
             if ($pageToken) {
                 $optParams['pageToken'] = $pageToken;
