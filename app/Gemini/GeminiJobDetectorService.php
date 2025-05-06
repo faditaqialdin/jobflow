@@ -17,12 +17,14 @@ readonly class GeminiJobDetectorService
      */
     public function getJob(string $text): ?array
     {
+        sleep(random_int(4, 6));
+
         $result = Gemini::generativeModel(ModelType::GEMINI_FLASH)
             ->generateContent(
                 sprintf($this->prompt, $text)
             )->text();
 
-        $result = trim($result);
+        $result = trim(str_replace(['```json', '```', '\n'], '', $result));
 
         if ($result === 'null') {
             return null;

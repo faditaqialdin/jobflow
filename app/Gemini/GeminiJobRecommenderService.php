@@ -15,6 +15,8 @@ readonly class GeminiJobRecommenderService
 
     public function isRecommended(Job $job, JobListQuery $query): bool
     {
+        sleep(random_int(4, 6));
+
         $result = Gemini::generativeModel(ModelType::GEMINI_FLASH)
             ->generateContent(
                 sprintf(
