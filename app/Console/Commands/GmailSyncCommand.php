@@ -4,21 +4,22 @@ namespace App\Console\Commands;
 
 use App\Gmail\GmailSyncService;
 use App\Models\User;
-use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Log;
 
-class GmailSyncCommand extends Command
+class GmailSyncCommand extends AppCommand
 {
     protected $signature = 'app:gmail-sync';
 
     protected $description = 'Sync with Gmail';
 
-    public function handle(GmailSyncService $gmailSyncService): void
+    public function __construct(private readonly GmailSyncService $gmailSyncService)
     {
-        Log::info('GmailSyncCommand started');
+        parent::__construct();
+    }
+
+    public function command(): void
+    {
         foreach (User::all() as $user) {
-            $gmailSyncService->sync($user);
+            $this->gmailSyncService->sync($user);
         }
-        Log::info('GmailSyncCommand finished');
     }
 }

@@ -5,20 +5,22 @@ namespace App\Console\Commands;
 use App\LinkedIn\LinkedInRecommendService;
 use App\LinkedIn\Query\JobListQueryBuilder;
 use App\Models\User;
-use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Log;
 
-class LinkedInRecommendCommand extends Command
+class LinkedInRecommendCommand extends AppCommand
 {
     protected $signature = 'app:linkedin-recommend';
 
     protected $description = 'Recommend jobs from LinkedIn';
 
-    public function handle(LinkedInRecommendService $linkedInService): void
+    public function __construct(private readonly LinkedInRecommendService $linkedInService)
     {
-        Log::info('LinkedInRecommendCommand started');
+        parent::__construct();
+    }
+
+    public function command(): void
+    {
         foreach (User::all() as $user) {
-            $linkedInService->recommend(
+            $this->linkedInService->recommend(
                 $user,
                 JobListQueryBuilder::new()
                     ->setKeywords($user->recommend_job_keywords)
@@ -29,6 +31,5 @@ class LinkedInRecommendCommand extends Command
                     ->build()
             );
         }
-        Log::info('LinkedInRecommendCommand finished');
     }
 }
