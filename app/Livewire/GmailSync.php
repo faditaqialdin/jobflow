@@ -12,7 +12,8 @@ class GmailSync extends Component
 
     public function __construct()
     {
-        $this->startDate = now()->subMonth()->format('Y-m-d');
+        $startDate = user()->synced_at ?? now()->subMonth();
+        $this->startDate = $startDate->format('Y-m-d');
         $this->updated();
     }
 
