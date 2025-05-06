@@ -33,20 +33,20 @@ class OpportunityRepository
         ]);
     }
 
-    public function createOrUpdate(array $data): Opportunity
+    public function createOrUpdate(User $user, array $data): Opportunity
     {
         if (!isset($data['company'], $data['name'], $data['status']) || !$data['company'] || !$data['name'] || !$data['status']) {
             throw new InvalidArgumentException('Missing required opportunity fields.');
         }
 
         $query = Opportunity::query()
-            ->where('user_id', $data['user_id'])
+            ->where('user_id', $user->id)
             ->whereLike('company', "%{$data['company']}%")
             ->whereLike('name', "%{$data['name']}%");
         /** @var Opportunity $opportunity */
         $opportunity = $query->firstOrNew();
         $opportunity->fill([
-            'user_id' => $data['user_id'],
+            'user_id' => $user->id,
             'name' => $data['name'],
             'company' => $data['company'],
             'companyLogo' => $opportunity->companyLogo ?? $data['companyLogo'] ?? '',

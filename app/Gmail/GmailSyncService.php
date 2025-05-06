@@ -38,7 +38,7 @@ readonly class GmailSyncService
                     $text = $this->gmailMessageFormatter->format($user, $message);
                     $result = $this->geminiJobDetectorService->getJob($text);
                     if ($result) {
-                        $this->opportunityRepository->createOrUpdate($result);
+                        $this->opportunityRepository->createOrUpdate($user, $result);
                     }
                 } catch (Throwable $throwable) {
                     report($throwable);
