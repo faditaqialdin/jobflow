@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Jobs\GmailSyncJob;
+use App\Gmail\GmailSyncService;
 use App\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
@@ -13,11 +13,12 @@ class GmailSyncCommand extends Command
 
     protected $description = 'Sync with Gmail';
 
-    public function handle(): void
+    public function handle(GmailSyncService $gmailSyncService): void
     {
         Log::info('GmailSyncCommand started');
         foreach (User::all() as $user) {
-            dispatch(new GmailSyncJob($user));
+            $gmailSyncService->sync($user);
         }
+        Log::info('GmailSyncCommand finished');
     }
 }
